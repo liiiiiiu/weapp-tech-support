@@ -1,7 +1,7 @@
 {
   "name": "weapp-tech-support",
-  "version": "1.0.0",
-  "description": "🌞 微信小程序版权声明自定义组件",
+  "version": "1.0.1",
+  "description": "🌞 微信小程序技术支持自定义组件",
   "main": "index.js",
   "scripts": {
     "dev": "gulp"
