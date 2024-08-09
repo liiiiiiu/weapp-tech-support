@@ -1,0 +1,20 @@
+/* components/TechSupport/TechSupport.wxss */
+
+.tech-support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-support-img {
+  width: 164rpx;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.tech-support-text {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+}

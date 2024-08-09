@@ -1,0 +1,11 @@
+<!--components/TechSupport/TechSupport.wxml-->
+<view id="tech-support" class="tech-support" style="{{ customStyle }}">
+  <block wx:if="{{ !useCustomContent }}">
+    <image wx:if="{{ image }}" src="{{ image }}" mode="widthFix" class="tech-support-img" />
+    <view class="tech-support-text">
+      <text>{{ name }}</text>
+      <text>提供技术支持</text>
+    </view>
+  </block>
+  <slot wx:else />
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "tech-support": "../../components/TechSupport/TechSupport"
+  }
+}
