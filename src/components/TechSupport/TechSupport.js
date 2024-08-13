@@ -24,17 +24,6 @@ Component({
   },
 
   data: {
-    _startYear: null
-  },
-
-  lifetimes: {
-    attached() {
-      const nowYear = new Date().getFullYear()
-
-      this.setData({
-        _startYear: this.properties.startYear ? this.properties.startYear : nowYear
-      })
-    }
   },
 
   methods: {

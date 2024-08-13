@@ -1,6 +1,6 @@
 {
   "name": "weapp-tech-support",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🌞 微信小程序技术支持自定义组件",
   "main": "index.js",
   "scripts": {
