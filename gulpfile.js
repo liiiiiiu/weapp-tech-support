@@ -1,47 +1,50 @@
-let gulp = require('gulp'),
-  clean = require('gulp-clean'),
-  changed = require('gulp-changed'),
-  pump = require('pump')
+const gulp = require('gulp')
+const clean = require('gulp-clean')
+const pump = require('pump')
+const postcss = require('gulp-postcss')
+const sorting = require('postcss-sorting')
+const cssnano = require('cssnano')
+const autoprefixer = require('gulp-autoprefixer')
 
-const sourceWeappDir = 'src'
-const distWeappDir = 'dist'
+const sourceDir = 'src'
+const destDir = 'dist'
 
-// 清理目标文件目录
-const cleanWeappTask = function cleanWeappTask(cb) {
+function cleanDest(cb) {
   pump([
-    gulp.src(distWeappDir, {
+    gulp.src(destDir, {
       allowEmpty: true
     }),
     clean()
   ], cb)
 }
 
-// 拷贝源文件目录
-const copyWeappTask = function copyTask(cb) {
+function copySource(cb) {
   pump([
     gulp.src([
-      sourceWeappDir + '/components/TechSupport/*.js',
-      sourceWeappDir + '/components/TechSupport/*.json',
-      sourceWeappDir + '/components/TechSupport/*.wxml',
-      sourceWeappDir + '/components/TechSupport/*.wxss',
+      `${sourceDir}/components/*/*`
     ]),
-    changed(distWeappDir + '/TechSupport'),
-    gulp.dest(distWeappDir + '/TechSupport')
+    gulp.dest(destDir)
   ], cb)
 }
 
-// 监听源文件目录变化
-const watchWeappTask = function watchWeappTask(cb) {
-  gulp.watch(
-    [
-      sourceWeappDir + '/components/TechSupport/*.js',
-      sourceWeappDir + '/components/TechSupport/*.json',
-      sourceWeappDir + '/components/TechSupport/*.wxml',
-      sourceWeappDir + '/components/TechSupport/*.wxss'
-    ],
-    gulp.series(cleanWeappTask, copyWeappTask
-  ))
+function formatCss(cb) {
+  pump([
+    gulp.src([
+      `${destDir}/*/*.wxss`
+    ]),
+    // 添加厂商前缀
+    autoprefixer({
+      overrideBrowserslist: ['> 0.15% in CN'],
+      cascade: true
+    }),
+    postcss([
+      // 样式属性自动排序
+      sorting(),
+      // 样式压缩
+      cssnano()
+    ]),
+    gulp.dest(destDir)
+  ], cb)
 }
 
-// 执行gulp
-gulp.task('default', gulp.series(cleanWeappTask, copyWeappTask, watchWeappTask))
+gulp.task('build', gulp.series(cleanDest, copySource, formatCss))

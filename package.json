@@ -1,10 +1,10 @@
 {
   "name": "weapp-tech-support",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "🌞 微信小程序技术支持自定义组件",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp"
+    "build": "gulp build"
   },
   "miniprogram": "dist",
   "repository": {
@@ -14,12 +14,18 @@
   "author": "liujiachang",
   "license": "MIT",
   "devDependencies": {
+    "cssnano": "^5.1.12",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-changed": "^4.0.3",
     "gulp-clean": "^0.4.0",
+    "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "postcss": "^8.4.16",
+    "postcss-preset-env": "^7.7.2",
+    "postcss-sorting": "^7.0.1",
     "pump": "^3.0.0"
   },
   "dependencies": {},
